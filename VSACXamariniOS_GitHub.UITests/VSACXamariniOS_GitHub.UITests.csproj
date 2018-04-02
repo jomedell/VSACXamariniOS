@@ -24,6 +24,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'StoreConfig|iPhone' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\StoreConfig</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
