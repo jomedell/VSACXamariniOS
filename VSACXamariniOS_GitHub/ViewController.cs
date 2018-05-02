@@ -27,6 +27,12 @@ namespace VSACXamariniOS_GitHub
             // Release any cached data, images, etc that aren't in use.
         }
 
+        //public InvalidNumberException(int value)
+        //{
+        //    var message = string.Format("Custome error!. Value: {0}", value);
+        //    base(message, this.InnexException)
+        //}
+
         partial void UIButton197_TouchUpInside(UIButton sender)
         {
             Analytics.TrackEvent("Button clicked", new Dictionary<string, string> {
@@ -39,12 +45,20 @@ namespace VSACXamariniOS_GitHub
 
         partial void UIButton199_TouchUpInside(UIButton sender)
         {
-        var properties = new Dictionary<string, string>
-            {
-                { "Category", "Hand Exc" },
-                { "Button", "Yes"}
-            };
-        Crashes.GenerateTestCrash();
+            var number = 5;
+            try {
+                if (number == 5)
+                    throw new InvalidTimeZoneException;
+            } catch (Exception exception) {
+                var properties = new Dictionary<string, string>
+                {
+                    { "Category", "Hand Exc" },
+                    { "Button", "Yes"}
+                };
+                Crashes.TrackError(exception, properties);
+            }
+       
+            Crashes.GenerateTestCrash();
 
             //throw new NotImplementedException();
         }
