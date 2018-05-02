@@ -46,6 +46,7 @@ namespace VSACXamariniOS_GitHub
             };
         Crashes.GenerateTestCrash();
 
+            //Comment below:
             //throw new NotImplementedException();
         }
     }
