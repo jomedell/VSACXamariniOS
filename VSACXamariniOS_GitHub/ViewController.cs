@@ -48,7 +48,7 @@ namespace VSACXamariniOS_GitHub
             var number = 5;
             try {
                 if (number == 5)
-                    throw new InvalidTimeZoneException;
+                    throw new InvalidTimeZoneException();
             } catch (Exception exception) {
                 var properties = new Dictionary<string, string>
                 {
