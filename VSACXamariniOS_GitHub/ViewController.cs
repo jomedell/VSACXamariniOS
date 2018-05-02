@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using UIKit;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+
 
 namespace VSACXamariniOS_GitHub
 {
@@ -21,6 +25,28 @@ namespace VSACXamariniOS_GitHub
         {
             base.DidReceiveMemoryWarning();
             // Release any cached data, images, etc that aren't in use.
+        }
+
+        partial void UIButton197_TouchUpInside(UIButton sender)
+        {
+            Analytics.TrackEvent("Button clicked", new Dictionary<string, string> {
+                { "Category", "Music" },
+                { "Color", "blue"}
+            });
+
+            //throw new NotImplementedException();
+        }
+
+        partial void UIButton199_TouchUpInside(UIButton sender)
+        {
+        var properties = new Dictionary<string, string>
+            {
+                { "Category", "Hand Exc" },
+                { "Button", "Yes"}
+            };
+        Crashes.GenerateTestCrash();
+
+            //throw new NotImplementedException();
         }
     }
 }

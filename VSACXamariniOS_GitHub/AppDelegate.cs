@@ -1,5 +1,8 @@
 ﻿using Foundation;
 using UIKit;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace VSACXamariniOS_GitHub
 {
@@ -21,6 +24,11 @@ namespace VSACXamariniOS_GitHub
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+
+            // App Center
+            AppCenter.LogLevel = LogLevel.Verbose;
+            AppCenter.Start("90fc37eb-316f-4cf1-8808-f7c0a472eadc",
+                            typeof(Analytics), typeof(Crashes));
 
             // Code to start the Xamarin Test Cloud Agent
 #if ENABLE_TEST_CLOUD
