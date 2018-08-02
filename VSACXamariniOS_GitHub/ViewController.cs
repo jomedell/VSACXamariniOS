@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using UIKit;
+using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 
@@ -18,6 +19,8 @@ namespace VSACXamariniOS_GitHub
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+
             // Perform any additional setup after loading the view, typically from a nib.
         }
 
@@ -35,11 +38,30 @@ namespace VSACXamariniOS_GitHub
 
         partial void UIButton197_TouchUpInside(UIButton sender)
         {
-            Analytics.TrackEvent("Button clicked", new Dictionary<string, string> {
-                { "Category", "Music" },
-                { "Color", "blue"}
-            });
 
+            Dictionary<string, string> myColors = new Dictionary<string, string>();
+            myColors.Add("Blue", "1");
+            myColors.Add("Red", "2");
+            myColors.Add("Green", "3");
+
+            Analytics.TrackEvent("Colors selected", myColors);
+
+
+            //Analytics.TrackEvent("Button clicked", new Dictionary<string, string> {
+            //    { "Category", "Music" },
+            //    { "Color", "blue"}
+            //});
+
+            Dictionary<string, string> myNumbs = new Dictionary<string, string>();
+            myNumbs.Add("One", "10");
+            myNumbs.Add("Two", "20");
+            myNumbs.Add("Three", "30");
+
+            Analytics.TrackEvent("Button clicked", myNumbs);
+
+
+
+            //System.Guid? installId = await AppCenter.GetInstallIdAsync();
             //throw new NotImplementedException();
         }
 
