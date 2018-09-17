@@ -5,7 +5,7 @@ using UIKit;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-
+using System.IO;
 
 namespace VSACXamariniOS_GitHub
 {
@@ -67,6 +67,32 @@ namespace VSACXamariniOS_GitHub
 
         partial void UIButton199_TouchUpInside(UIButton sender)
         {
+
+            Crashes.GetErrorAttachments = (ErrorReport report) =>
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                string filename = Path.Combine(path, "myTextFile.txt");
+
+                using (var streamWriter = new StreamWriter(filename, true))
+                {
+                    streamWriter.WriteLine("My first line");
+                    streamWriter.WriteLine("Second line");
+                    streamWriter.WriteLine("Third line");
+                }
+                //using (var streamReader = new StreamReader(filename))
+                //{
+                //    string content = streamReader.ReadToEnd();
+                //    System.Diagnostics.Debug.WriteLine(content);
+                //}
+
+
+                return new ErrorAttachmentLog[]
+                {
+                    ErrorAttachmentLog.AttachmentWithText("My Text File", filename)
+                };
+
+            };
+
             var number = 5;
             try {
                 if (number == 5)
