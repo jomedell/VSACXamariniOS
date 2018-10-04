@@ -3,6 +3,7 @@ using UIKit;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using System.IO;
 
 namespace VSACXamariniOS_GitHub
 {
@@ -26,6 +27,31 @@ namespace VSACXamariniOS_GitHub
             // If not required for your application you can safely delete this method
 
             // App Center
+
+            Crashes.GetErrorAttachments = (ErrorReport report) =>
+            {
+                string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                string filename = Path.Combine(path, "myTextFile.txt");
+
+                using (var streamWriter = new StreamWriter(filename, true))
+                {
+                    streamWriter.WriteLine("My first line");
+                    streamWriter.WriteLine("Second line");
+                    streamWriter.WriteLine("Third line");
+                }
+                using (var streamReader = new StreamReader(filename))
+                {
+                    string content = streamReader.ReadToEnd();
+                    System.Diagnostics.Debug.WriteLine(content);
+                }
+
+
+                return new ErrorAttachmentLog[]
+                {
+                    ErrorAttachmentLog.AttachmentWithText("My Text File", filename)
+                };
+
+            };
             AppCenter.LogLevel = LogLevel.Verbose;
             AppCenter.Start("90fc37eb-316f-4cf1-8808-f7c0a472eadc",
                             typeof(Analytics), typeof(Crashes));
